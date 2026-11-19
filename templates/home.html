@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}
+AIAS | Smart Attendance
+{% endblock %}
+
+{% block content %}
+
+<div class="hero-section text-center">
+
+    <span class="badge rounded-pill text-bg-primary mb-3">
+        Smart Campus Security
+    </span>
+
+    <h1 class="display-5 fw-bold">
+        Anti-Impersonation
+        <span class="text-primary">Attendance System</span>
+    </h1>
+
+    <p class="lead text-secondary mt-3">
+        Secure attendance using dynamic QR codes,
+        location verification and device authentication.
+    </p>
+
+    <div class="mt-4">
+
+        <a href="{{ url_for('auth.login') }}"
+           class="btn btn-primary btn-lg">
+            Login to AIAS
+        </a>
+
+    </div>
+
+</div>
+
+<div class="row g-4 mt-5">
+
+    <div class="col-md-4">
+
+        <div class="aias-card h-100">
+
+            <h4>Dynamic QR</h4>
+
+            <p>
+                QR codes refresh periodically to reduce
+                attendance impersonation using screenshots.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="aias-card h-100">
+
+            <h4>Location Verification</h4>
+
+            <p>
+                Attendance is verified against the
+                classroom's geographical location.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="aias-card h-100">
+
+            <h4>Device Verification</h4>
+
+            <p>
+                The system helps prevent attendance
+                misuse across different devices.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
