@@ -1,0 +1,45 @@
+
+{% extends "base.html" %}
+
+{% block title %}Users{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-3">Users</h2>
+
+<div class="aias-card">
+
+    <table class="table mb-0">
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Division</th>
+                <th>Active</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for u in rows %}
+
+            <tr>
+                <td>{{ u.user_code }}</td>
+                <td>{{ u.name }}</td>
+                <td>{{ u.role }}</td>
+                <td>{{ u.division or "-" }}</td>
+                <td>{{ "yes" if u.active else "no" }}</td>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}
+
