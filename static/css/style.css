@@ -1,0 +1,14 @@
+:root {
+  --aias-navy: #2B3A55;
+  --aias-blue: #4472C4;
+  --aias-red: #C00000;
+  --aias-green: #70AD47;
+  --aias-amber: #FFC000;
+}
+body { background: #f5f7fb; }
+.aias-nav { background: var(--aias-navy); }
+.btn-primary { background: var(--aias-blue); border-color: var(--aias-blue); }
+.aias-card { background: #fff; border-radius: 14px; box-shadow: 0 2px 8px rgba(0,0,0,.08); padding: 1.25rem; }
+.status-ok { color: var(--aias-green); }
+.status-bad { color: var(--aias-red); }
+.status-warn { color: var(--aias-amber); }
