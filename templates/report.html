@@ -1,0 +1,29 @@
+
+{% extends "base.html" %}
+{% block title %}Session Report{% endblock %}
+{% block content %}
+<h2>Session Report</h2>
+{% if summary %}
+<p class="text-muted">{{ summary.subject }} &middot; {{ summary.division }} &middot; Room
+{{ summary.room }}</p>
+<div class="row g-3 mb-4">
+ <div class="col-6 col-md-3"><div class="aias-card text-center"><div class="fs-2 status-ok">{{ summary.present }}</div>Present</div></div>
+ <div class="col-6 col-md-3"><div class="aias-card text-center"><div class="fs-2 status-warn">{{ summary.flagged }}</div>Flagged</div></div>
+ <div class="col-6 col-md-3"><div class="aias-card text-center"><div class="fs-2 status-bad">{{ summary.rejected }}</div>Rejected attempts</div></div>
+ <div class="col-6 col-md-3"><div class="aias-card text-center"><div class="fs-2">{{ summary.total_students }}</div>Students in class</div></div>
+</div>
+{% endif %}
+<div class="aias-card">
+ <table class="table mb-0">
+   <thead><tr><th>Name</th><th>Status</th><th>Distance (m)</th><th>Time</th></tr></thead>
+   <tbody>
+    {% for m in marked %}
+    <tr><td>{{ m.name }}</td><td>{{ m.status }}</td><td>{{ m.distance_m }}</td><td>{{ m.marked_at }}</td></tr>
+    {% else %}
+    <tr><td colspan="4" class="text-muted">Nobody has been marked yet.</td></tr>
+    {% endfor %}
+   </tbody>
+ </table>
+</div>
+<a href="{{ url_for('faculty.dashboard') }}" class="btn btn-outline-primary mt-3">Back to dashboard</a>
+{% endblock %}
