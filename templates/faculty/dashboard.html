@@ -1,6 +1,16 @@
+
 {% extends "base.html" %}
 {% block title %}Faculty Dashboard{% endblock %}
 {% block content %}
-<h2>Faculty Dashboard</h2>
-<div class="alert alert-info">Placeholder – Tanmai builds this page.</div>
+<h2 class="mb-4">Welcome, {{ user.name }}</h2>
+<div class="row g-3">
+ <div class="col-md-6">
+  <div class="aias-card">
+   <h5>Today's class</h5>
+   <p class="mb-1"><strong>DAA</strong> &middot; SY-B &middot; Room 304</p>
+   <a href="{{ url_for('faculty.new_session') }}" class="btn btn-primary mt-2">Start
+Attendance</a>
+  </div>
+ </div>
+</div>
 {% endblock %}
