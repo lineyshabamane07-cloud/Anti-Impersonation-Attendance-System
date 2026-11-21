@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, session, redirect, abort, request
 
 from config import Config
 
@@ -8,11 +8,19 @@ from routes.student import student_bp
 from routes.admin import admin_bp
 
 
+DEV_USERS = {
+    "faculty": {"id": 1, "name": "Demo Faculty", "role": "faculty"},
+    "student": {"id": 101, "name": "Demo Student", "role": "student"},
+    "admin": {"id": 2, "name": "Demo Admin", "role": "admin"},
+}
+
+
 def create_app():
 
     app = Flask(__name__)
 
     app.config.from_object(Config)
+    app.config.setdefault("SECRET_KEY", "dev-only-change-me")
 
     # Register blueprints
     app.register_blueprint(auth_bp, url_prefix="/auth")
@@ -31,6 +39,21 @@ def create_app():
             "application": "AIAS",
             "message": "AIAS server is running"
         })
+
+    @app.route("/dev/login/<role>")
+    def dev_login(role):
+        # Shortcut login for building and testing. Off when DEV_MODE=false.
+        if not getattr(Config, "DEV_MODE", True):
+            abort(404)
+        if role not in DEV_USERS:
+            abort(404)
+        user = dict(DEV_USERS[role])
+        user_id = request.args.get("id")
+        if user_id and user_id.isdigit():
+            user["id"] = int(user_id)
+        session.clear()
+        session["user"] = user
+        return redirect(f"/{role}/dashboard")
 
     return app
 
