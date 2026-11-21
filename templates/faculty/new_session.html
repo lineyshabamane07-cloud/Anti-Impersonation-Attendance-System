@@ -1,1 +1,38 @@
 
+{% extends "base.html" %}
+{% block title %}Start Attendance{% endblock %}
+{% block content %}
+<h2>Start Attendance</h2>
+<form id="session-form" class="aias-card mt-3" style="max-width: 560px">
+ <div class="mb-3">
+  <label class="form-label">Classroom location</label>
+  <div class="input-group">
+   <input id="lat" class="form-control" placeholder="Latitude" required>
+   <input id="lng" class="form-control" placeholder="Longitude" required>
+  </div>
+  <button type="button" id="btn-loc" class="btn btn-outline-primary btn-sm mt-2">Use my current
+location</button>
+  <div id="loc-msg" class="form-text"></div>
+ </div>
+ <div class="row g-2">
+  <div class="col">
+   <label class="form-label">Radius (m)</label>
+   <input id="radius" type="number" min="10" class="form-control" value="{{ default_radius }}">
+  </div>
+  <div class="col">
+   <label class="form-label">QR refresh (s)</label>
+   <input id="refresh" type="number" min="5" class="form-control" value="{{ default_refresh }}">
+  </div>
+  <div class="col">
+   <label class="form-label">Duration (min)</label>
+   <input id="duration" type="number" min="1" class="form-control" value="10">
+  </div>
+ </div>
+ <button class="btn btn-primary mt-3" type="submit">Start session</button>
+ <div id="form-error" class="text-danger mt-2"></div>
+</form>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/start_session.js') }}"></script>
+{% endblock %}
+
